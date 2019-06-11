@@ -1,24 +1,22 @@
 'use strict'
 const path = require('path')
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js'
+  },
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+        use: 'babel-loader'
       },
       {
         test: /\.css$/,
@@ -44,7 +42,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'project-webpack-react',
+      template: 'index.html'
+    }),
     new CleanWebpackPlugin()
   ],
   mode: 'production'

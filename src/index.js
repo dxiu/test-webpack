@@ -1,4 +1,14 @@
-import { component } from './hello.js'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import './style.css'
-const div = component()
-document.body.appendChild(div)
+class Search extends React.Component {
+  render () {
+    return (
+      <div className="hello">react dom</div>
+    )
+  }
+}
+ReactDOM.render(
+  <Search/>,
+  document.getElementById('root')
+)
