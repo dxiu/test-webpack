@@ -1,7 +1,10 @@
 'use strict'
 const path = require('path')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 module.exports = {
+  mode: 'development',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '/dist'),
@@ -12,7 +15,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        use: 'babel-loader'
+        loader: 'babel-loader',
+        query: {
+            presets: ['es2015', 'react']
+        }
       },
       {
         test: /\.css$/,
@@ -37,12 +43,16 @@ module.exports = {
       }
     ]
   },
-  mode: 'development',
   plugins: [
+    new HtmlWebpackPlugin({
+      title: 'project-webpack-react',
+      template: 'index.html'
+    }),
+    new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    contentBase: './dist/',
+    contentBase: './dist',
     hot: true
   }
 }

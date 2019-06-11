@@ -4,7 +4,7 @@ import './style.css'
 class Search extends React.Component {
   render () {
     return (
-      <div className="hello">react dom</div>
+      <div className="hello">react dom 123 456</div>
     )
   }
 }
