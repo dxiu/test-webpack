@@ -45,7 +45,6 @@ module.exports = {
       title: 'project-webpack-react',
       template: 'index.html'
     }),
-    new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
