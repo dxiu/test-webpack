@@ -1,10 +1,12 @@
 'use strict'
 const path = require('path')
-
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-module.exports = {
+const OptimizeCssAssestsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const common = require('./webpack.common')
+module.exports = merge(common, {
   entry: {
     index: './src/index.js'
   },
@@ -12,13 +14,9 @@ module.exports = {
     path: path.join(__dirname, '/dist'),
     filename: '[name]_[chunkhash:8].js'
   },
+  devtool: 'source-map',
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: 'babel-loader'
-      },
       {
         test: /\.css$/,
         use: [
@@ -48,14 +46,16 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'project-webpack-react',
-      template: 'index.html'
-    }),
-    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css'
-    })
+    }),
+    new UglifyJSPlugin({
+      sourceMap: true
+    }),
+    new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new OptimizeCssAssestsWebpackPlugin({})
   ],
   mode: 'production'
-}
+})
