@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import _ from 'lodash'
 import './style.less'
-import Hello from './component'
+import {Hello, Border} from './component'
 console.log(
   _.join(['33', '44', '55!'], ' ')
 )
@@ -14,6 +14,7 @@ class Search extends React.Component {
     return (
       <div className="color_blue">
         <Hello/>
+        <Border/>
       </div>
     )
   }
