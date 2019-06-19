@@ -6,13 +6,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin") // 提取出css为单独的文件
 const autoprefixer = require('autoprefixer')
 module.exports = {
-  entry: {
-    index: './src/index.js'
-  },
-  output: {
-    path: path.join(__dirname, '/dist'),
-    filename: '[name]_[chunkhash:8].js'
-  },
   module: {
     rules: [
       {
@@ -59,10 +52,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'project-webpack-react',
-      template: 'index.html'
-    }),
     new CleanWebpackPlugin(),
     // 提取公共的js到单独的文件
     new webpack.optimize.SplitChunksPlugin({
