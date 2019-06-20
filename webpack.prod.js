@@ -54,21 +54,21 @@ module.exports = merge(common, {
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new OptimizeCssAssestsWebpackPlugin({}),
-    new HtmlWebpackExternalsPlugin({
-      externals: [
-        {
-          module: 'react',
-          entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
-          global: 'React',
-        },
-        {
-          module: 'react-dom',
-          entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
-          global: 'ReactDOM',
-        }
-      ]
-    })
+    new OptimizeCssAssestsWebpackPlugin({})
+    // new HtmlWebpackExternalsPlugin({
+    //   externals: [
+    //     {
+    //       module: 'react',
+    //       entry: 'https://unpkg.com/react@16/umd/react.production.min.js',
+    //       global: 'React',
+    //     },
+    //     {
+    //       module: 'react-dom',
+    //       entry: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+    //       global: 'ReactDOM',
+    //     }
+    //   ]
+    // })
   ].concat(htmlWebpackPlugins),
   mode: 'production'
 })

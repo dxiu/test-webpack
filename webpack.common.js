@@ -12,12 +12,25 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpeg|svg|jpg|gif)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
-              name: '[name]_[hash:8].[ext]'
+              name: '[name]_[hash:8].[ext]',
+              limit: 10240
+            }
+          }
+        ]
+      },
+      {
+        test: /.(woff|woff2|eot|ttf|otf)/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name]_[hash:8].[ext]',
+              limit: 10240
             }
           }
         ]
