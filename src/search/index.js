@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import _ from 'lodash'
+import { a } from './tree-shaking'
 class Search extends React.Component {
   render () {
     return (
