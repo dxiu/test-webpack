@@ -1,8 +1,5 @@
 import React from 'react'
 import _ from 'lodash'
-console.log(
-  _.join(['Another', 'module', 'loaded!'], ' ')
-)
 export class Hello extends React.Component {
   render() {
     return(
@@ -11,6 +8,12 @@ export class Hello extends React.Component {
   }
 }
 export class Border extends React.Component {
+  componentDidMount() {
+    console.log('componentDidMount')
+  }
+  componentWillMount() {
+    console.log('componentWillMount')
+  }
   render () {
     return (
       <div className="bg flex">
