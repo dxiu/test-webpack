@@ -41,6 +41,7 @@ const setMAP = () => {
 }
 const { entry, htmlWebpackPlugins } = setMAP()
 module.exports = merge(common, {
+  mode: 'production', // webpack 4+的版本(规定是生产环境)
   entry: entry,
   output: {
     path: path.join(__dirname, '/dist'),
@@ -52,7 +53,7 @@ module.exports = merge(common, {
   plugins: [
     new UglifyJSPlugin({}),
     new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production')
+        'process.env.NODE_ENV': JSON.stringify('production') // webpack 3 及一下的版本(规定是生产环境)
     }),
     new OptimizeCssAssestsWebpackPlugin({}),
     new HtmlWebpackExternalsPlugin({
@@ -69,6 +70,5 @@ module.exports = merge(common, {
         }
       ]
     })
-  ].concat(htmlWebpackPlugins),
-  mode: 'production'
+  ].concat(htmlWebpackPlugins)
 })
