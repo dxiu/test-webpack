@@ -12,7 +12,6 @@ const setMAP = () => {
   const entry = {}
   const htmlWebpackPlugins = []
   const entryFiles = glob.sync(path.join(__dirname, './src/*/index.js'))
-  
   entryFiles.map(entryFile => {
     const mathArr = entryFile.match(/src\/(.*)\/index\.js/)
     const pageName = mathArr && mathArr[1]
