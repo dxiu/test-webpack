@@ -50,7 +50,7 @@ module.exports = merge(common, {
   },
   devtool: 'source-map',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(), // 热更新
     new UglifyJSPlugin({
       sourceMap: true
     })
