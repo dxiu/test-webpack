@@ -50,9 +50,15 @@ module.exports = merge(common, {
     rules: []
   },
   plugins: [
-    new UglifyJSPlugin({}),
+    new UglifyJSPlugin({
+      uglifyOptions: {
+        compress: {
+          drop_console: true // 打包的时候去掉console
+        }
+      }
+    }),
     new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production') // webpack 3 及一下的版本(规定是生产环境)
+      'process.env.NODE_ENV': JSON.stringify('production') // webpack 3 及一下的版本(规定是生产环境)
     }),
     new OptimizeCssAssestsWebpackPlugin({}),
     new HtmlWebpackExternalsPlugin({
